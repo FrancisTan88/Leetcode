@@ -1,4 +1,4 @@
-
+from typing import List
 
 
 class Solution:
@@ -9,29 +9,22 @@ class Solution:
     Space complexity: O(1)
 
     For the first for loop, find the shortest string in the array, and store that string.
-    For the double for loops, we take the character of the string we store before, 
+    For the second for loop, we take the character of the string we store before, 
     and using the inner for loop to go through the entire array to check if there is different character,
     if that way, we don't have to continue the iterations, just return the result,
     however, if the double for loops is finished and there still nothing to be returned, 
     it must mean that the result is the "string" itself.
     """
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        shortest_str = len(strs[0])
-        string = strs[0]
-        for i, s in enumerate(strs):
-            if len(strs[i]) < shortest_str:
-                shortest_str = len(strs[i])
-                string = s
-        
-        ret_str = ""
-        for i in range(shortest_str):
-            curr_char = string[i]
-            for j in range(len(strs)):
-                if strs[j][i] != curr_char:
-                    return ret_str
-            ret_str = ret_str + curr_char
-                    
-        return ret_str
+        shortest_str = strs[0]
+        for i in strs:
+            if len(i) < len(shortest_str):
+                shortest_str = i
+        for c in range(len(shortest_str)):
+            for string in strs:
+                if string[c] != shortest_str[c]:
+                    return shortest_str[:c]
+        return shortest_str
 
 
     """
@@ -39,7 +32,6 @@ class Solution:
 
     Time complexity: O(N*M), given that there are N strings in list at most, and the length of every string is not longer than M
     Space complexity: O(1)
-
     """
     def longestCommonPrefix(self, strs: List[str]) -> str:
         for i in range(len(strs[0])):
@@ -67,7 +59,6 @@ class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
         minimum = min(strs)
         maximum = max(strs)
-        # count = 0
         for i in range(len(minimum)):
             if minimum[i] != maximum[i]:
                 return minimum[:i]
