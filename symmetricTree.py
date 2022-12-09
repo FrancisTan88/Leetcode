@@ -1,3 +1,9 @@
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 class Solution:
     '''
     Method: Recursion
@@ -5,15 +11,14 @@ class Solution:
     Space complexity: O(n)
     '''
     def isSymmetric(self, root: TreeNode) -> bool:
-        if not root:
-            return True
-        
-        def isMirror(tree1, tree2):
-            if not tree1 or not tree2: # if one of them is null
-                return tree2 == tree1  # compare them
-            if tree1.val != tree2.val: # if above not executed, means they are both number
-                return False           # if they are both different return false
-                                       # if they are similar go and look further
-            return isMirror(tree1.left, tree2.right) and isMirror(tree1.right, tree2.left)
-            
-        return isMirror(root.left, root.right)
+        def solve(root1, root2):
+            if (root1 and not root2) or (not root1 and root2):
+                return False
+            elif not root1 and not root2:
+                return True
+            elif root1.val != root2.val:
+                return False
+            # the values are equal
+            else:
+                return solve(root1.left, root2.right) and solve(root1.right, root2.left)
+        return solve(root.left, root.right)
