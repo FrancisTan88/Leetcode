@@ -1,3 +1,5 @@
+from typing import List
+
 class Solution:
     
     # Method1: Naive, append first m elements of nums1 to the new list
