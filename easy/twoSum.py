@@ -8,10 +8,10 @@ class Solution:
     """
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         hashmap = {}
-        for ind, val in enumerate(nums):
-            hashmap[val] = ind
-        for ind, val in enumerate(nums):
-            complement = target - val
-            if complement in hashmap and ind != hashmap[complement]:
-                return [ind, hashmap[complement]]
+        for idx, num in enumerate(nums):
+            if str(num) not in hashmap:
+                hashmap[str(num)] = idx
+            if str(target-num) in hashmap and \
+                hashmap[str(target-num)] != idx:
+                return [idx, hashmap[str(target-num)]]
                     

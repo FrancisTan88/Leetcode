@@ -1,4 +1,4 @@
-# Aka Binary search:
+from typing import List
 
 class Solution:
     """
@@ -7,37 +7,36 @@ class Solution:
     Space complexity: O(1)
     """
     def searchInsert(self, nums: List[int], target: int) -> int:
-        start = 0
-        end = len(nums)-1
-        while start < end:
-            mid = (end+start) // 2
-            if target < nums[mid]:
-                end = mid - 1
-            elif target > nums[mid]:
-                start = mid + 1
+        left = 0
+        right = len(nums)-1
+        while left < right:
+            middle = (right+left) // 2
+            if target == nums[middle]:
+                return middle
+            elif target < nums[middle]:
+                right = middle
             else:
-                return mid
-            
-        if target > nums[start]: return start + 1
-        else: return start
+                left = middle + 1
+        return len(nums) if target > nums[-1] else left
 
     """
     Method: Binary search (recursive)
-    Time complexity: O(log n)
-    Space complexity: O(1)
+    Time complexity: O(logn)
+    Space complexity: O(logn)
     """
-    def searchInsert(nums, target, start, end):
-        middle = (start + end) // 2
-        if start >= end:
-            if target <= nums[start]: return start
-            else: return start+1
-        
-        if target == nums[middle]:
-            return middle
-        elif target < nums[middle]:
-            return searchInsert(nums, target, start, middle-1)
-        elif target > nums[middle]:
-            return searchInsert(nums, target, middle+1, end)
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        def binary_search(nums, target, left, right):
+            if left >= right:
+                return left
+            middle = (left + right) // 2
+            if target == nums[middle]:
+                return middle
+            elif target < nums[middle]:
+                return binary_search(nums, target, left, middle)
+            else:
+                return binary_search(nums, target, middle+1, right)
+        return len(nums) if target > nums[-1] \
+            else binary_search(nums, target, 0, len(nums)-1)
 
 
        
