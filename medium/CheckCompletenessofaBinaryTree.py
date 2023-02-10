@@ -19,7 +19,7 @@ class Solution:
             num_nodes, max_pos = dfs(root.right, num_nodes, 2*pos+1, max_pos)
             return num_nodes, max_pos
         num_nodes, max_pos = dfs(root, 0, 1, 1)
-        return False if num_nodes != max_pos else True
+        return num_nodes == max_pos
     
     '''
     time: O(n)

@@ -5,3 +5,4 @@ print(np.transpose(arr))
 print(list(zip(*arr)))
 
 
+sorted()
