@@ -1,8 +1,17 @@
 import numpy as np
 
-arr = [[1,2,3], [3,2,1]]
-print(np.transpose(arr))
-print(list(zip(*arr)))
+# lst = [[], []]
+# lst = [None, None, None]
+# print(any(lst))
 
 
-sorted()
+# lst = [1,2,3]
+# t = (4,5,6)
+# d = {7,8,9}
+# lst += t
+# print(lst)
+# lst += d
+# print(lst)
+
+lst = []
+print(list(zip(*lst)))
