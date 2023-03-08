@@ -1,4 +1,3 @@
-
 class Solution:
     '''
     time: O(n)
@@ -9,7 +8,7 @@ class Solution:
         l = 0
         max_len = 0
         for r, char in enumerate(s):
-            if (char in hashmap) and (hashmap[char] >= l) :
+            if (char in hashmap) and (hashmap[char] >= l):
                 l = hashmap[char] + 1
             else:
                 max_len = max(max_len, r - l + 1)

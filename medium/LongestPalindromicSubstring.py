@@ -3,6 +3,7 @@ class Solution:
     time: O(n^2)
     space: O(1)
     """
+
     def longestPalindrome(self, s: str) -> str:
         def expand(s, idx, one):
             if one:
@@ -20,12 +21,13 @@ class Solution:
             l += 1
             r -= 1
             return l, r
+
         def maintain(l, r, s, e):
             if (r - l) > (e - s):
                 s = l
                 e = r
             return s, e
-            
+
         idx, start, end = 0, 0, 0
         while idx < len(s):
             l, r = expand(s, idx, True)
@@ -35,12 +37,13 @@ class Solution:
                 start, end = maintain(l, r, start, end)
             idx += 1
         return s[start:end+1]
-    
+
     """
     dp
     time: O(n^2)
     space: O(n^2)
     """
+
     def longestPalindrome(self, s: str) -> str:
         dp = [[False] * len(s) for i in range(len(s))]
         for i in range(len(s)):

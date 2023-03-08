@@ -13,8 +13,7 @@ class Solution:
     def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         ans = []
         while head:
-            node = ListNode(head.val)
-            ans.append(node)
+            ans.append(ListNode(head.val))
             head = head.next
         ans.sort(key=lambda x: x.val)
         dummy = ListNode()

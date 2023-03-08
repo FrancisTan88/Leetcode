@@ -13,5 +13,5 @@ import numpy as np
 # lst += d
 # print(lst)
 
-lst = []
-print(list(zip(*lst)))
+lst = [[1,2,3], [1,2,3,4], [1,2]]
+print(max(lst, key=lambda x: len(x)))
