@@ -1,9 +1,11 @@
 from typing import Optional
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
+
 class Solution:
     '''
     time: O(n)
@@ -20,7 +22,7 @@ class Solution:
             return num_nodes, max_pos
         num_nodes, max_pos = dfs(root, 0, 1, 1)
         return num_nodes == max_pos
-    
+
     '''
     time: O(n)
     space: O(n)
@@ -35,4 +37,4 @@ class Solution:
         for i in range(idx, len(bfs)):
             if bfs[i]:
                 return False
-        return True   
+        return True

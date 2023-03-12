@@ -1,8 +1,8 @@
 from typing import List
 class Solution:
     """
-    time: O(n^3), pay attention to the "if candidate not in ans:"
-    space: O(n^2)
+    time: O(n^2), given that for every "base number" that <= 0, we scan all the number on its right side.
+    space: O(n), which is the cost of the set.
     """
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         ans = set()
