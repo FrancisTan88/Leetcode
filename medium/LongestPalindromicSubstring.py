@@ -1,42 +1,24 @@
 class Solution:
     """
-    time: O(n^2)
+    method: expand from every center
+    time: O(n^2)(best solution)
     space: O(1)
     """
-
     def longestPalindrome(self, s: str) -> str:
-        def expand(s, idx, one):
-            if one:
-                l = idx - 1
-                r = idx + 1
-            else:
-                l = idx - 1
-                r = idx + 2
-            while l >= 0 and r < len(s):
-                if s[l] == s[r]:
-                    l -= 1
-                    r += 1
-                else:
-                    break
+        def expand(s, l, r, leftmost, rightmost):
+            while (l >= 0 and r < len(s)) and (s[l] == s[r]):
+                l -= 1
+                r += 1
             l += 1
             r -= 1
-            return l, r
-
-        def maintain(l, r, s, e):
-            if (r - l) > (e - s):
-                s = l
-                e = r
-            return s, e
-
-        idx, start, end = 0, 0, 0
-        while idx < len(s):
-            l, r = expand(s, idx, True)
-            start, end = maintain(l, r, start, end)
-            if idx + 1 < len(s) and s[idx] == s[idx+1]:
-                l, r = expand(s, idx, False)
-                start, end = maintain(l, r, start, end)
-            idx += 1
-        return s[start:end+1]
+            if r-l > rightmost-leftmost: return l, r
+            else: return leftmost, rightmost
+        leftmost = 0
+        rightmost = 0
+        for i in range(len(s)-1):
+            leftmost, rightmost = expand(s, i, i, leftmost, rightmost)
+            leftmost, rightmost = expand(s, i, i+1, leftmost, rightmost)
+        return s[leftmost:rightmost+1]
 
     """
     dp

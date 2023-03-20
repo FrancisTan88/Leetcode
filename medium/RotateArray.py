@@ -26,7 +26,7 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        def reverse(nums, start, end):
+        def swap(nums, start, end):
             while start < end:
                 nums[start], nums[end]= nums[end], nums[start]
                 start += 1
@@ -34,7 +34,6 @@ class Solution:
             return nums
         n = len(nums)
         k %= n
-        nums = reverse(nums, 0, n-1)
-        nums = reverse(nums, 0, k-1)
-        nums = reverse(nums, k, n-1)
-
+        nums = swap(nums, 0, n-1)
+        nums = swap(nums, 0, k-1)
+        nums = swap(nums, k, n-1)
