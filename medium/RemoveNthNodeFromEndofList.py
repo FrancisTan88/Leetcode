@@ -4,9 +4,11 @@ class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
+
+
 class Solution:
     """
-    time: O(n)
+    time: O(2n) = O(n)
     space: O(1)
     """
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
@@ -26,3 +28,23 @@ class Solution:
                 return ret_head
             tmp_head = tmp_head.next
         return ret_head.next
+    
+
+class Solution2:
+    """
+    (best solution)
+    time: O(n)
+    space: O(1)
+    """
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        left = head
+        right = left
+        for _ in range(n):
+            right = right.next
+        while right:
+            if not right.next:
+                left.next = left.next.next
+                return head
+            right = right.next
+            left = left.next
+        return head.next 
